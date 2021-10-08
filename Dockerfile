@@ -1,16 +1,15 @@
 FROM debian:11
 
-COPY . .
+COPY . /app
 
 RUN apt-get update \
- && apt-get install -y wget apt-transport-https gnupg2  \
- && sh -c 'wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -' \
- && sh -c 'wget -qO- https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list' \
- && apt-get update \
- && apt-get install -y dart=1.9.3-1_amd64
+ && apt-get install -y wget apt-transport-https gnupg2 unzip
 
-RUN cd sp_shared && dart pub get
-RUN cd sp_client && dart pub get
-RUN cd sp_server && dart pub get
+RUN cd /app && wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_1.22.6-stable.tar.xz && tar xf flutter_linux_1.22.6-stable.tar.xz
+ENV PATH="${PATH}:/app/flutter/bin"
+
+RUN cd /app/sp_shared && pub get
+RUN cd /app/sp_client && pub get
+RUN cd /app/sp_server && pub get
 
 CMD ['./start.sh']
