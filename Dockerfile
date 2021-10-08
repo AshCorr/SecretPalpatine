@@ -3,7 +3,7 @@ FROM debian:11
 COPY . /app
 
 RUN apt-get update \
- && apt-get install -y wget apt-transport-https gnupg2 unzip
+ && apt-get install -y wget apt-transport-https gnupg2 unzip git
 
 RUN cd /app && mkdir dart && wget https://storage.googleapis.com/dart-archive/channels/stable/release/1.24.3/sdk/dartsdk-linux-x64-release.zip && unzip dartsdk-linux-x64-release.zip -d dart
 ENV PATH="${PATH}:/app/dart/dart-sdk/bin"
