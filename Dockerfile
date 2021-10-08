@@ -5,7 +5,7 @@ COPY . /app
 RUN apt-get update \
  && apt-get install -y wget apt-transport-https gnupg2 unzip
 
-RUN cd /app && wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_1.22.6-stable.tar.xz && tar xf flutter_linux_1.22.6-stable.tar.xz
+RUN cd /app && mkdir dart && wget https://storage.googleapis.com/dart-archive/channels/stable/release/1.24.3/sdk/dartsdk-linux-x64-release.zip && unzip dartsdk-linux-x64-release.zip -d dart
 ENV PATH="${PATH}:/app/flutter/bin"
 
 RUN cd /app/sp_shared && pub get
