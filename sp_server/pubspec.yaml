@@ -8,8 +8,7 @@ environment:
   sdk: '>=1.20.1 <2.0.0'
 
 dependencies:
-  socket_io:
-    git: git://github.com/rikulo/socket.io-dart.git
+  socket_io: ^0.8.2
   sp_shared:
     path: ../sp_shared
 
