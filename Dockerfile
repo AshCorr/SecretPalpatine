@@ -9,8 +9,8 @@ RUN apt-get update \
  && apt-get update \
  && apt-get install -y dart
 
-RUN cd sp_shared && pub get
-RUN cd sp_client && pub get
-RUN cd sp_server && pub get
+RUN cd sp_shared && dart pub get
+RUN cd sp_client && dart pub get
+RUN cd sp_server && dart pub get
 
 CMD ['./start.sh']
